@@ -1,0 +1,106 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newcommand{\paracooba}{\textsc{Paracooba}}
+\newcommand{\kissat}{\textsc{Kissat}}
+\newcommand{\cadical}{\textsc{CaDiCaL}}
+
+\begin{document}
+
+\title{Paracooba Enters SAT Competition 2022}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Maximilian Levi Heisinger}
+\IEEEauthorblockA{\textit{Institute for Symbolic Artificial Intelligence} \\
+\textit{Johannes Kepler University Linz}\\
+Linz, Austria \\
+maximilian.heisinger@jku.at}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Mathias Fleury}
+\IEEEauthorblockA{\textit{Chair of Computer Architecture} \\
+\textit{University of Freiburg}\\
+Freiburg, Germany \\
+fleury@cs.uni-freiburg.de}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Armin Biere}
+\IEEEauthorblockA{\textit{Chair of Computer Architecture} \\
+\textit{University of Freiburg}\\
+Freiburg, Germany \\
+biere@cs.uni-freiburg.de}
+}
+
+\maketitle
+
+\paracooba{} is a parallel, distributed, Cube-and-Conquer (CnC) SAT solver based on
+\kissat{}~\cite{kissatsat2020} and \cadical~\cite{cadical}. It tries to split problems into
+sub-problems by recursively setting variables to concrete values, i.e. applying assumptions to the
+original formula. These sub-problems are then solved with the incremental version of \cadical{},
+combined with an (optional) timer to stop the solving process and re-split the formula again. Next
+to this parallel solving process, an instance of \kissat{} is also running sequentially to stop bad
+splits from having too large impacts. The \paracooba{} solver can be found on GitHub using the URL
+below.
+
+\begin{center}
+\href{https://github.com/maximaximal/paracooba}{github.com/maximaximal/paracooba}
+\end{center}
+
+\section{Formula Splitting}
+
+Splitting formulas is based on our implementation of tree-based lookahead~\cite{treelook} part of
+\cadical{}. If the splitting with lookahead takes too long, we fall back to the number of
+occurrences of variables. The chosen variable $x$ is then deemed to be the most decicive one and
+used to split the formula $\phi$ into $\phi \wedge \neg x$ and $\phi \wedge x$. Now, if both
+sub-formulas are unsatisfiable, the whole formula is also unsatisfiable. If one is satisfiable, the
+whole formula is also satisfiable with the same assignment. This process is repeated until a
+predefined cube-tree-depth is reached, which defaults to saturate the locally available cores by
+default. Sub-problems usually vary greatly in their hardness and are then solved in individual
+solver threads or offloaded to other worker nodes in the network.
+
+\section{Communication and Task Scheduling}
+
+The communication between nodes uses a custom binary protocol transported via TCP. After starting, a
+fully interconnected network of workers is created. Every worker knows utilization information of
+all other worker nodes and is thus able to decide locally, whether to offload work from the local
+queue to other nodes in the network. The dynamic offloading of tasks ensures that the highly
+different task hardness is mitigated by always saturating as many cores as possible.
+
+To start, paracooba does not need the addresses of it's workers. The main node can start on it's own
+and either immediately start solving (if local worker threads were enabled) or idle until worker
+nodes connect to it. The main node listens on a port for incoming connections from workers (both
+port and listen address are configurable). After connecting, workers receive all other known peers
+from the peer they connected to, in turn forming the fully connected network explained above.
+Workers may solve multiple problems at once, problems sharing the available worker threads on a
+node.
+
+\section{Extending Paracooba}
+
+\paracooba{} is built to be highly modular, also offering a QBF solving module. The software is
+MIT-licensed and can be found on GitHub. More about the implementation details and the expandability
+can be found in \cite{paracooba} and \cite{heisinger2021distributed}. Possible extension points are
+the communication stack, the solver module, the offloading / scheduling mechanism, and the local
+task runner. Extensions may be loaded from provided shared object files at start-up. Automated
+testing of modules is done using integration tests, also provided in the repository.
+
+\begin{thebibliography}{00}
+\bibitem{kissatsat2020}{A. Biere, K. Frazekas, M. Fleury, M. Heisinger, CaDiCaL, Kissat, Paracooba,
+\bibitem{cadical}{A. Biere, CaDiCaL at the SAT Race 2019, SAT Race 2019}
+\bibitem{treelook}{M. Heule, M. Järvisalo, A. Biere, Revisiting hyper binary resolution,
+International Conference on Integration of Constraint Programming, Artificial Intelligence, and
+Operations Research. Springer, Berlin, Heidelberg, 2013}
+\bibitem{paracooba}{M. Heisinger, M. Fleury, A. Biere, Distributed Cube and Conquer with Paracooba,
+SAT2020}
+\bibitem{heisinger2021distributed}{M. Heisinger, Distributed SAT \& QBF Solving: The Paracooba
+Framework, 2021}
+Plingeling and Treengeling Entering the SAT Competition 2020, SAT 2020}
+\end{thebibliography}
+
+\end{document}
