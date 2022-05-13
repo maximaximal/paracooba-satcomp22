@@ -1,0 +1,7 @@
+(undo-tree-save-format-version . 1)
+"16e546b1d0d8a26b2de2bf92facc642588a52bdf"
+[nil nil nil nil (25211 53318 74902 112000) 0 nil]
+([nil nil ((4 . 7) (#("bin" 0 3 (fontified t face font-lock-comment-face)) . 4) (t 25211 43032 856844 535000)) nil (25211 53318 74901 534000) 0 nil])
+([nil nil ((8 . 16) (#("bash" 0 4 (fontified t face font-lock-keyword-face)) . 8)) nil (25211 53318 74900 978000) 0 nil])
+([nil current ((413 . 414)) nil (25211 53318 74898 660000) 0 nil])
+nil

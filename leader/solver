@@ -46,39 +46,25 @@ class Runner:
         with open(input) as f:
             return json.loads(f.read())
     
-    def create_hostfile(self,ips, request_dir):
-        hostfile_path = os.path.join(request_dir, 'combined_hostfile')
-        with open(hostfile_path, 'w+') as f:
-            for ip in ips:
-                f.write(f'{ip} slots=2')
-                f.write('\n')
-            return hostfile_path
-
     def get_command(self, input_json):
         problem_path = input_json.get("problem_path")
         worker_node_ips = input_json.get("worker_node_ips", [])
         
-        combined_hostfile = self.create_hostfile(worker_node_ips, self.request_directory)
-
-        run_list = ["/competition/run_mallob.sh"]
-        run_list.append(combined_hostfile)
+        run_list = ["/competition/run_paracooba.sh"]
         run_list.append(problem_path)
 
         return run_list
 
 
-class MallobParser:
+class ParacoobaParser:
     @staticmethod
     def get_result(output_file):
-        """
-        TODO: Participants should replace this with something more robust for their own solver!
-        """
         with open(output_file) as f:
             raw_logs = f.read()
-            if "found result UNSAT" in raw_logs:
-                return "UNSATISFIABLE"
-            elif "found result SAT" in raw_logs:
+            if "s SATISFIABLE" in raw_logs:
                 return "SATISFIABLE"
+            elif "s UNSATISFIABLE" in raw_logs:
+                return "UNSATISFIABLE"
             elif "UNKNOWN" in raw_logs:
                 return "UNKNOWN"
             else:
@@ -92,7 +78,7 @@ if __name__ == "__main__":
     cmd = runner.get_command(input_json)
     
     output = runner.run(cmd)
-    result = MallobParser.get_result(output["stdout"])
+    result = ParacoobaParser.get_result(output["stdout"])
     logging.info(f"RESULT: {result}")
     solver_output = {
         "return_code": output["return_code"],

@@ -4,6 +4,7 @@ import json
 import subprocess
 import time
 import logging
+import os
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -11,16 +12,14 @@ def check_process_status():
     status = 'READY'
     output = subprocess.check_output(['ps', 'ax', '-ocomm']).decode("utf-8").strip()
 
-    if 'orted' in output:
-        status = 'BUSY'
-    
-    if 'sshd' not in output:
+    if 'paracs' not in output:
         status = 'ERROR'
 
     return status
 
 
 def update_worker_status():
+    time.sleep(2)
     while True:
         status = check_process_status()
 
@@ -34,4 +33,7 @@ def update_worker_status():
 
 
 if __name__ == "__main__":
+    leader = get_current_leader_nodes()[0]
+    leader_ip = leader["ip"]
+    os.system("/competition/paracs  --worker $(nproc) --known-remote " + leader_ip + " --tcp-listen-address 0.0.0.0 &")
     update_worker_status()

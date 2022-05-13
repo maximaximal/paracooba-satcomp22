@@ -1,0 +1,7 @@
+(undo-tree-save-format-version . 1)
+"1883a4918a4ddb75a0ce682f7eb200ce1dfa8a04"
+[nil nil nil nil (25211 53317 381429 621000) 0 nil]
+([nil nil ((25 . 34) ("Mallob" . 25) (t 25211 43038 856798 395000)) nil (25211 53317 381428 981000) 0 nil])
+([nil nil ((40 . 49) ("mallob" . 40)) nil (25211 53317 381428 111000) 0 nil])
+([nil current ((105 . 114) ("Mallob" . 105)) nil (25211 53317 381425 755000) 0 nil])
+nil

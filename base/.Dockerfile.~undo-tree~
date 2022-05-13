@@ -1,0 +1,31 @@
+(undo-tree-save-format-version . 1)
+"07514aa3283d1686b8f78a6000f2cc9e70b86287"
+[nil nil nil nil (25211 43308 389164 264000) 0 nil]
+([nil nil ((185 . 190) (t 25211 43029 472870 552000)) nil (25211 43308 389163 706000) 0 nil])
+([nil nil (("build-essential " . 243)) nil (25211 43308 389163 372000) 0 nil])
+([nil nil (("zlib1g-dev " . 243)) nil (25211 43308 389163 94000) 0 nil])
+([nil nil (("cmake " . 243)) nil (25211 43308 389162 828000) 0 nil])
+([nil nil (("build-essential " . 251)) nil (25211 43308 389162 531000) 0 nil])
+([nil nil (("gfortran " . 251)) nil (25211 43308 389162 187000) 0 nil])
+([nil nil ((262 . 264) ("t" . -262) (undo-tree-id0 . -1) 263 (260 . 263)) nil (25211 43308 389161 692000) 0 nil])
+([nil nil ((261 . 395)) nil (25211 43308 389151 328000) 0 nil])
+([nil nil ((395 . 396)) nil (25211 43308 389148 741000) 0 nil])
+([nil nil ((409 . 418) ("Mallob" . 409) (t 25211 43308 438756 3000)) nil (25211 43345 203595 366000) 0 nil])
+([nil nil ((456 . 463) (452 . 456) ("domschrei" . 452)) nil (25211 43345 203595 116000) 0 nil])
+([nil nil ((464 . 473) ("mallob" . 464)) nil (25211 43345 203594 837000) 0 nil])
+([nil nil ((482 . 491) ("mallob" . 482)) nil (25211 43345 203594 578000) 0 nil])
+([nil nil ((33 . 34)) nil (25211 43345 203594 259000) 0 nil])
+([nil nil ((34 . 37)) nil (25211 43345 203593 945000) 0 nil])
+([nil nil ((27 . 36) ("Mallobbbcw" . 27)) nil (25211 43345 203621 177000) 0 nil])
+([nil nil (("RUN cd lib && bash fetch_and_build_sat_solvers.sh && cd ..
+" . 495) (undo-tree-id8 . 1) (undo-tree-id9 . -4) 499) nil (25211 43376 274851 817000) 0 nil] [nil nil ((499 . 511) ("cd lib && bash fetch_and_build_sat_solvers.sh && cd .." . 499)) ((499 . 553) ("mkdir build " . 499) (undo-tree-id1 . -11)) (25211 43345 203590 866000) 0 nil])
+([nil nil ((533 . 597) 585 ("-DCMAKE_BUILD_TYPE=RELEASE -DMALLOB_USE_RESTRICTED=1" . 533) (undo-tree-id2 . -52) (undo-tree-id3 . -27) (undo-tree-id4 . -51) (undo-tree-id5 . -51) (undo-tree-id6 . -52) (undo-tree-id7 . -51) 585) nil (25211 43376 274850 617000) 0 nil])
+nil
+([nil nil (("." . 598)) nil (25211 43376 274842 819000) 0 nil])
+([nil nil (("." . 598)) nil (25211 43376 274842 565000) 0 nil])
+([nil nil ((" " . 598)) nil (25211 43376 274841 985000) 0 nil])
+([nil nil ((533 . 536)) nil (25211 43376 274839 821000) 0 nil])
+([nil nil (("6" . -622) (undo-tree-id10 . -1) 623 (620 . 623) ("0" . -620) (undo-tree-id11 . -1) 621 (619 . 621) (t 25211 43376 326241 219000)) nil (25211 43381 992579 400000) 0 nil])
+([nil nil ((621 . 622) (t 25211 43381 998198 206000)) nil (25211 43387 220625 347000) 0 nil])
+([nil current (("VERBOSE=1 " . 604) (t 25211 43387 226158 547000)) nil (25211 43391 474116 968000) 0 nil])
+nil
