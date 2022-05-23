@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-/competition/solver \
+echo "Run Paracs"
+
+/competition/paracs \
 	"$1" \
 	--resplit \
 	--cadical-cubes \
