@@ -9,6 +9,10 @@ FROM satcomp-base:leader AS paracooba_liaison
 WORKDIR /
 # Copy paracooba and solver scripts
 COPY --from=builder /paracooba/build/paracs /competition/paracs
+COPY --from=builder /lib/x86_64-linux-gnu/libboost_log.so.1.71.0 /competition/libboost_log.so.1.71.0
+COPY --from=builder /lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0 /competition/libboost_filesystem.so.1.71.0
+COPY --from=builder /lib/x86_64-linux-gnu/libboost_thread.so.1.71.0 /competition/libboost_thread.so.1.71.0
+COPY --from=builder /lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0 /competition/libboost_program_options.so.1.71.0
 COPY --chown=ecs-user /run_paracooba.sh /competition
 COPY --chown=ecs-user /solver /competition
 USER ecs-user

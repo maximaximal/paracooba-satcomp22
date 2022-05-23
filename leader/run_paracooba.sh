@@ -2,6 +2,8 @@
 
 echo "Run Paracs"
 
+export LD_LIBRARY_PATH="/competition/"
+
 /competition/paracs \
 	"$1" \
 	--resplit \
@@ -11,5 +13,5 @@ echo "Run Paracs"
 	--concurrent-cube-tree-count 4 \
 	--distribute-tree-learnt-clauses-max-level 4 \
 	--worker $(nproc) \
-	--id $id \
+	--id 1 \
 	--tcp-listen-address 0.0.0.0
