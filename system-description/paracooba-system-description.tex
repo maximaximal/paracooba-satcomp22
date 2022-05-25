@@ -19,23 +19,11 @@
 
 \title{Paracooba Enters SAT Competition 2022}
 
-\author{\IEEEauthorblockN{1\textsuperscript{st} Maximilian Levi Heisinger}
+\author{\IEEEauthorblockN{Maximilian Levi Heisinger}
 \IEEEauthorblockA{\textit{Institute for Symbolic Artificial Intelligence} \\
 \textit{Johannes Kepler University Linz}\\
 Linz, Austria \\
 maximilian.heisinger@jku.at}
-\and
-\IEEEauthorblockN{2\textsuperscript{nd} Mathias Fleury}
-\IEEEauthorblockA{\textit{Chair of Computer Architecture} \\
-\textit{University of Freiburg}\\
-Freiburg, Germany \\
-fleury@cs.uni-freiburg.de}
-\and
-\IEEEauthorblockN{3\textsuperscript{rd} Armin Biere}
-\IEEEauthorblockA{\textit{Chair of Computer Architecture} \\
-\textit{University of Freiburg}\\
-Freiburg, Germany \\
-biere@cs.uni-freiburg.de}
 }
 
 \maketitle
@@ -61,34 +49,40 @@ occurrences of variables. The chosen variable $x$ is then deemed to be the most 
 used to split the formula $\phi$ into $\phi \wedge \neg x$ and $\phi \wedge x$. Now, if both
 sub-formulas are unsatisfiable, the whole formula is also unsatisfiable. If one is satisfiable, the
 whole formula is also satisfiable with the same assignment. This process is repeated until a
-predefined cube-tree-depth is reached, which defaults to saturate the locally available cores by
-default. Sub-problems usually vary greatly in their hardness and are then solved in individual
+predefined cube-tree-depth is reached, which defaults to saturate the locally
+available cores.
+Sub-problems usually vary greatly in their hardness and are then solved in individual
 solver threads or offloaded to other worker nodes in the network.
 
 \section{Communication and Task Scheduling}
 
-The communication between nodes uses a custom binary protocol transported via TCP. After starting, a
-fully interconnected network of workers is created. Every worker knows utilization information of
-all other worker nodes and is thus able to decide locally, whether to offload work from the local
-queue to other nodes in the network. The dynamic offloading of tasks ensures that the highly
-different task hardness is mitigated by always saturating as many cores as possible.
+The communication between nodes uses a custom binary protocol transported via
+TCP. After starting, a fully interconnected network of workers is created.
+Every worker receives utilization information of all other worker nodes and is
+thus able to decide locally, whether to offload work from the local queue to
+other nodes in the network. The dynamic offloading of tasks ensures that the
+highly different task hardness is mitigated by always saturating as many cores
+as possible.
 
-To start, paracooba does not need the addresses of it's workers. The main node can start on it's own
-and either immediately start solving (if local worker threads were enabled) or idle until worker
-nodes connect to it. The main node listens on a port for incoming connections from workers (both
-port and listen address are configurable). After connecting, workers receive all other known peers
-from the peer they connected to, in turn forming the fully connected network explained above.
-Workers may solve multiple problems at once, problems sharing the available worker threads on a
-node.
+To start, paracooba does not need the addresses of it's workers. The main node
+can start on it's own and either immediately start solving (if local worker
+threads were enabled) or idle until worker nodes connect to it. The main node
+listens on a port for incoming connections from workers (both the port and
+listen address are configurable). After connecting, workers receive all other
+known peers from the peer they connected to, in turn forming the fully connected
+network explained above.  Workers may solve multiple problems at once, problems
+sharing the available worker threads on a given node.
 
 \section{Extending Paracooba}
 
-\paracooba{} is built to be highly modular, also offering a QBF solving module. The software is
-MIT-licensed and can be found on GitHub. More about the implementation details and the expandability
-can be found in \cite{paracooba} and \cite{heisinger2021distributed}. Possible extension points are
-the communication stack, the solver module, the offloading / scheduling mechanism, and the local
-task runner. Extensions may be loaded from provided shared object files at start-up. Automated
-testing of modules is done using integration tests, also provided in the repository.
+\paracooba{} is built to be highly modular, also offering a QBF solving module.
+The software is MIT-licensed and can be found on GitHub. More detauls about the
+implementation, the employed algorithms and the expandability can be found in
+\cite{paracooba} and \cite{heisinger2021distributed}. Possible extension points
+are the communication stack, the solver module, the offloading / scheduling
+mechanism, and the local task runner. Extensions may be loaded from provided
+shared object files at start-up. Automated testing of modules is done using
+integration tests, also provided in the repository.
 
 \begin{thebibliography}{00}
 \bibitem{kissatsat2020}{A. Biere, K. Frazekas, M. Fleury, M. Heisinger, CaDiCaL, Kissat, Paracooba,
