@@ -6,6 +6,7 @@ import time
 import logging
 import os
 import json
+import multiprocessing
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -45,6 +46,6 @@ if __name__ == "__main__":
     print("GOT LEADER IP" + str(leader_ip))
     my_env = os.environ.copy()
     my_env["LD_LIBRARY_PATH"] = "/competition/"
-    p = subprocess.Popen(["/competition/paracs",  "--worker", "$(nproc)", "--known-remote", leader_ip, "--tcp-listen-address", "0.0.0.0"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=my_env)
+    p = subprocess.Popen(["/competition/paracs",  "--worker", str(multiprocessing.cpu_count() - 1), "--known-remote", leader_ip, "--tcp-listen-address", "0.0.0.0"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=my_env)
     print("DO POPEN")
     update_worker_status(p)
