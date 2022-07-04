@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-killall paracs
+pid=$(cat "/competition/paracs.pid")
+kill $pid
+
+# Restart, including getting the leader IP, but without writing status.
+/competition/worker --no-status &

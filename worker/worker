@@ -5,6 +5,7 @@ import subprocess
 import time
 import logging
 import os
+import sys
 import json
 import multiprocessing
 
@@ -47,5 +48,11 @@ if __name__ == "__main__":
     my_env = os.environ.copy()
     my_env["LD_LIBRARY_PATH"] = "/competition/"
     p = subprocess.Popen(["/competition/paracs",  "--worker", str(multiprocessing.cpu_count() - 1), "--known-remote", leader_ip, "--tcp-listen-address", "0.0.0.0"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=my_env)
+    pid = p.pid
+    with open('/competition/paracs.pid', 'w') as f:
+        f.write(pid)
     print("DO POPEN")
-    update_worker_status(p)
+    if len(sys.argv) > 1 and sys.argv[1] == '--no-status':
+        print("Don't update status, as status is deactivated by --no-status")
+    else:
+        update_worker_status(p)
