@@ -14,7 +14,7 @@ COPY --from=builder /lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0 /competi
 COPY --from=builder /lib/x86_64-linux-gnu/libboost_thread.so.1.71.0 /competition/libboost_thread.so.1.71.0
 COPY --from=builder /lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0 /competition/libboost_program_options.so.1.71.0
 COPY --chown=ecs-user /worker /competition/worker
-#COPY --chown=ecs-user /cleanup /competition/cleanup
+COPY --chown=ecs-user /cleanup /competition/cleanup
 
 RUN chmod +x /competition/worker
 RUN chmod +x /competition/cleanup
