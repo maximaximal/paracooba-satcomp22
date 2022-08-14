@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.28)  14 AUG 2022 09:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/GNU Guix) (preloaded format=pdflatex 2022.5.28)  14 AUG 2022 09:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -546,11 +546,11 @@ anged.
 (rerunfilecheck)             Checksum: 6770A3664BD9D2B0A9AA6398BED08346;583.
  ) 
 Here is how much of TeX's memory you used:
- 10374 strings out of 478994
- 160414 string characters out of 5833534
- 466801 words of memory out of 5000000
+ 10375 strings out of 478994
+ 160421 string characters out of 5833534
+ 468801 words of memory out of 5000000
  27720 multiletter control sequences out of 15000+600000
- 432293 words of font info for 81 fonts, out of 8000000 for 9000
+ 433429 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,8n,74p,280b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/gnu/store/4qxzjz3n5x3r1jc6hg7061pqkwz5aj6c-texlive-texmf-20210325/share/tex
@@ -561,7 +561,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></gnu/store/4qxzjz3n5x3r1j
 c6hg7061pqkwz5aj6c-texlive-texmf-20210325/share/texmf-dist/fonts/type1/urw/time
 s/utmr8a.pfb></gnu/store/4qxzjz3n5x3r1jc6hg7061pqkwz5aj6c-texlive-texmf-2021032
 5/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paracooba-system-description.pdf (1 page, 51200 bytes).
+Output written on paracooba-system-description.pdf (1 page, 54906 bytes).
 PDF statistics:
  62 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream
