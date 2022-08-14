@@ -28,14 +28,16 @@ maximilian.heisinger@jku.at}
 
 \maketitle
 
-\paracooba{} is a parallel, distributed, Cube-and-Conquer (CnC) SAT solver based on
-\kissat{}~\cite{kissatsat2020} and \cadical~\cite{cadical}. It tries to split problems into
-sub-problems by recursively setting variables to concrete values, i.e. applying assumptions to the
-original formula. These sub-problems are then solved with the incremental version of \cadical{},
-combined with an (optional) timer to stop the solving process and re-split the formula again. Next
-to this parallel solving process, an instance of \kissat{} is also running sequentially to stop bad
-splits from having too large impacts. The \paracooba{} solver can be found on GitHub using the URL
-below.
+\paracooba{} is a parallel, distributed, Cube-and-Conquer (CnC) SAT solver based
+on \kissat{}~\cite{kissatsat2020} and \cadical~\cite{cadical}. This year's
+submission contains a few fixes compared to~\cite{satcomp2021}. \paracooba{}
+tries to split problems into sub-problems by recursively setting variables to
+concrete values, i.e. applying assumptions to the original formula. These
+sub-problems are then solved with the incremental version of \cadical{},
+combined with an (optional) timer to stop the solving process and re-split the
+formula again. Next to this parallel solving process, an instance of \kissat{}
+is also running sequentially to stop bad splits from having too large
+impacts. The \paracooba{} solver can be found on GitHub using the URL below.
 
 \begin{center}
 \href{https://github.com/maximaximal/paracooba}{github.com/maximaximal/paracooba}
@@ -76,7 +78,7 @@ sharing the available worker threads on a given node.
 \section{Extending Paracooba}
 
 \paracooba{} is built to be highly modular, also offering a QBF solving module.
-The software is MIT-licensed and can be found on GitHub. More detauls about the
+The software is MIT-licensed and can be found on GitHub. More details about the
 implementation, the employed algorithms and the expandability can be found in
 \cite{paracooba} and \cite{heisinger2021distributed}. Possible extension points
 are the communication stack, the solver module, the offloading / scheduling
@@ -85,8 +87,12 @@ shared object files at start-up. Automated testing of modules is done using
 integration tests, also provided in the repository.
 
 \begin{thebibliography}{00}
-\bibitem{kissatsat2020}{A. Biere, K. Frazekas, M. Fleury, M. Heisinger, CaDiCaL, Kissat, Paracooba,
+\bibitem{kissatsat2020}{A. Biere, K. Frazekas, M. Fleury, M. Heisinger, CaDiCaL,
+    Kissat, Paracooba, Plingeling and Treengeling entering the SAT competition
+    2020. SAT Competition 2020}
 \bibitem{cadical}{A. Biere, CaDiCaL at the SAT Race 2019, SAT Race 2019}
+\bibitem{satcomp2021}{A. Biere, M. Fleury, M. Heisinger, CaDiCaL, Kissat,
+    Paracooba Entering the SAT Competition 2021, SAT Competition 2021}
 \bibitem{treelook}{M. Heule, M. Järvisalo, A. Biere, Revisiting hyper binary resolution,
 International Conference on Integration of Constraint Programming, Artificial Intelligence, and
 Operations Research. Springer, Berlin, Heidelberg, 2013}
